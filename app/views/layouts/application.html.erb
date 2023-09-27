@@ -20,7 +20,10 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <%= link_to 'Home', root_path, class: "nav-link #{'active' if action_name == 'index' }", 'aria-current': 'page' %>
+          <%= link_to 'Home', root_path, class: "nav-link #{'active' if controller_name == 'welcome' && action_name == 'index' }", 'aria-current': 'page' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'My Posts', posts_index_path, class: "nav-link #{'active' if controller_name == 'posts' && action_name == 'index' }", 'aria-current': 'page' %>
         </li>
         <li class="nav-item">
           <%= link_to 'About', about_path, class: "nav-link #{'active' if action_name == 'about' }", 'aria-current': 'page' %>
