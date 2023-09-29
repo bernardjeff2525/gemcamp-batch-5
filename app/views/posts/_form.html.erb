@@ -1,0 +1,25 @@
+<div class="container">
+  <% if @post.errors.any? %>
+    <div class="alert alert-warning" role="alert">
+      <ul>
+        <% @post.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+</div>
+
+<div class="container">
+  <%= form_with model: @post, url: url, method: method, data: { turbo: false } do |form| %>
+    <div class="mb-3">
+      <%= form.label :title, class: 'form-label' %>
+      <%= form.text_field :title, class: 'form-control' %>
+    </div>
+    <div class="mb-3">
+      <%= form.label :content, class: 'form-label' %>
+      <%= form.text_area :content, class: 'form-control' %>
+    </div>
+    <%= form.submit class: 'btn btn-primary' %>
+  <% end %>
+</div>
