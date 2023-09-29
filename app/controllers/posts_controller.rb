@@ -1,4 +1,7 @@
 class PostsController < ApplicationController
+  # before_action :set_post, except: [:index, :new, :create]
+  before_action :set_post, only: [:show, :edit, :update, :destroy]
+
   def index
     # start_date = '2023-09-28'
     # end_date = '2023-09-30'
@@ -13,7 +16,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(params.require(:post).permit(:title, :content))
+    @post = Post.new(post_params)
     if @post.save
       flash[:notice] = 'Post created successfully'
       redirect_to posts_path
@@ -23,17 +26,12 @@ class PostsController < ApplicationController
     end
   end
 
-  def show
-    @post = Post.find(params[:id])
-  end
+  def show; end
 
-  def edit
-    @post = Post.find(params[:id])
-  end
+  def edit; end
 
   def update
-    @post = Post.find(params[:id])
-    if @post.update(params.require(:post).permit(:title, :content))
+    if @post.update(post_params)
       flash[:notice] = 'Post update successfully'
       redirect_to posts_path
     else
@@ -42,4 +40,19 @@ class PostsController < ApplicationController
     end
   end
 
+  def destroy
+    @post.destroy
+    flash[:notice] = 'Post destroy successfully'
+    redirect_to posts_path
+  end
+
+  private
+
+  def set_post
+    @post = Post.find(params[:id])
+  end
+
+  def post_params
+    params.require(:post).permit(:title, :content)
+  end
 end
