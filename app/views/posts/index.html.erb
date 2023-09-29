@@ -19,6 +19,7 @@
       <td><%= post.created_at %></td>
       <td><%= post.updated_at %></td>
       <td>
+        <%= link_to 'Show', post_path(post), class: 'btn btn-primary' %>
         <%= link_to 'Edit', edit_post_path(post), class: 'btn btn-warning' %>
       </td>
     </tr>
