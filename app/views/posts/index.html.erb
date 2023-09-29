@@ -4,10 +4,11 @@
 <table>
   <thead>
   <tr>
-    <td>title</td>
-    <td>content</td>
-    <td>created at</td>
-    <td>update at</td>
+    <td>TITLE</td>
+    <td>CONTENT</td>
+    <td>CREATED AT</td>
+    <td>UPDATED AT</td>
+    <td>ACTIONS</td>
   </tr>
   </thead>
   <tbody>
@@ -17,6 +18,9 @@
       <td><%= post.content %></td>
       <td><%= post.created_at %></td>
       <td><%= post.updated_at %></td>
+      <td>
+        <%= link_to 'Edit', edit_post_path(post), class: 'btn btn-warning' %>
+      </td>
     </tr>
   <% end %>
   </tbody>

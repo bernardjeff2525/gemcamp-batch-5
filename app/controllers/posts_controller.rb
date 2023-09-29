@@ -13,7 +13,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(params[:post].permit(:title, :content))
+    @post = Post.new(params.require(:post).permit(:title, :content))
     if @post.save
       flash[:notice] = 'Post created successfully'
       redirect_to posts_path
@@ -22,4 +22,20 @@ class PostsController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
+
+  def edit
+    @post = Post.find(params[:id])
+  end
+
+  def update
+    @post = Post.find(params[:id])
+    if @post.update(params.require(:post).permit(:title, :content))
+      flash[:notice] = 'Post update successfully'
+      redirect_to posts_path
+    else
+      flash.now[:alert] = 'Post failed to update'
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
 end
