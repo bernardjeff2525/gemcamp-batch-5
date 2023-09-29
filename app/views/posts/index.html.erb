@@ -1,5 +1,32 @@
-<h1>Post List</h1>
-<%= link_to 'Add new Post', new_post_path, class: 'btn btn-success' %>
+<div class="d-flex justify-content-end">
+  <div>
+    <h1>Post List</h1>
+  </div>
+  <div>
+    <%= link_to 'Add new Post', new_post_path, class: 'btn btn-success' %>
+  </div>
+</div>
+
+<div class="container">
+  <%= form_with url: posts_path, method: :get do |form| %>
+    <div class="mb-3">
+      <%= form.label :title, class: 'form-label' %>
+      <%= form.text_field :title, value: params[:title], class: 'form-control' %>
+    </div>
+    <div class="mb-3">
+      <%= form.label :start_date, class: 'form-label' %>
+      <%= form.date_field :start_date, value: params[:start_date], class: 'form-control' %>
+    </div>
+    <div class="mb-3">
+      <%= form.label :end_date, class: 'form-label' %>
+      <%= form.date_field :end_date, value: params[:end_date], class: 'form-control' %>
+    </div>
+    <%= form.submit 'Search', class: 'btn btn-sm btn-primary' %>
+  <% end %>
+</div>
+
+
+
 
 <table>
   <thead>

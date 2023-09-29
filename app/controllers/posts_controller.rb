@@ -3,12 +3,12 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   def index
-    # start_date = '2023-09-28'
-    # end_date = '2023-09-30'
     @posts = Post.all
-    # @posts = @posts.where(title: 'My sidfdfxth post')
-    # @posts = @posts.where(created_at: start_date..end_date)
-    # @posts = @posts.order(created_at: :desc) # desc / asc
+    @posts = @posts.where('title LIKE ?', "%#{params[:title]}%")
+    if params[:start_date].present? && params[:end_date].present?
+      @posts = @posts.where(created_at: params[:start_date]..params[:end_date])
+    end
+    @posts = @posts.order(created_at: :desc)
   end
 
   def new
