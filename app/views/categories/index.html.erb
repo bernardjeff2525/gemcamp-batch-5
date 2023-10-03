@@ -1,0 +1,26 @@
+<div class="container">
+  <h1>Category List</h1>
+  <%= link_to 'Add New Category', new_category_path, class: 'btn btn-success' %>
+</div>
+
+<div class="container">
+  <table class="table table-bordered ">
+    <thead>
+    <tr>
+      <td>Name</td>
+      <td>Actions</td>
+    </tr>
+    </thead>
+    <tbody>
+    <% @categories.each do |category| %>
+      <tr>
+        <td><%= category.name %></td>
+        <td>
+          <%= link_to 'Edit', edit_category_path(category), class: 'btn btn-sm btn-warning' %>
+          <%= button_to 'Delete', category_path(category), method: :delete, class: 'btn btn-sm btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

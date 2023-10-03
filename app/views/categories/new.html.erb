@@ -1,0 +1,7 @@
+<h1>New Category</h1>
+<%= render partial: "form",
+                   locals: {
+                     category: @category,
+                     url: categories_path,
+                     method: :post
+                   } %>

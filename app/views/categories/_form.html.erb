@@ -1,0 +1,21 @@
+<div class="container">
+  <% if category.errors.any? %>
+    <div class="alert alert-warning" role="alert">
+      <ul>
+        <% category.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+</div>
+
+<div class="container">
+  <%= form_with model: category, url: url, method: method, data: { turbo: false } do |form| %>
+    <div class="mb-3">
+      <%= form.label :name, class: 'form-label' %>
+      <%= form.text_area :name, class: 'form-control' %>
+    </div>
+    <%= form.submit class: 'btn btn-primary' %>
+  <% end %>
+</div>
