@@ -7,11 +7,11 @@
   </ul>
   <h4>Comments</h4>
   <ul>
-    <% @post.comments.each do |comment| %>
+    <% @comments.each do |comment| %>
       <li><%= comment.content %>(<%= comment.created_at %>)</li>
     <% end %>
   </ul>
-</div>
+  </div>
 <div class="container">
   <%= link_to 'Edit Post', edit_post_path(@post), class: "btn btn-warning" %>
   <%= link_to 'Post List', posts_path, class: "btn btn-secondary" %>
