@@ -11,6 +11,7 @@
       <li>
         <%= comment.content %>(<%= comment.created_at %>)
         <%= link_to 'Edit Comment', edit_post_comment_path(@post, comment), class: "btn btn-sm btn-warning" %>
+        <%= button_to 'Delete', post_comment_path(@post, comment), method: :delete,class: "btn btn-sm btn-danger" %>
       </li>
     <% end %>
   </ul>
