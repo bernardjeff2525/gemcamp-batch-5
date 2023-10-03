@@ -8,6 +8,6 @@ Rails.application.routes.draw do
   get :about, to: 'welcome#about'
 
   resources :posts do
-    resources :comments
+    resources :comments, except: :show
   end
 end

@@ -8,7 +8,10 @@
   <h4>Comments</h4>
   <ul>
     <% @comments.each do |comment| %>
-      <li><%= comment.content %>(<%= comment.created_at %>)</li>
+      <li>
+        <%= comment.content %>(<%= comment.created_at %>)
+        <%= link_to 'Edit Comment', edit_post_comment_path(@post, comment), class: "btn btn-sm btn-warning" %>
+      </li>
     <% end %>
   </ul>
   </div>

@@ -1,0 +1,7 @@
+<h1>Edit Comment</h1>
+<%= render partial: 'form',
+           locals: {
+             comment: @comment,
+             url: post_comment_path(@post, @comment),
+             method: :patch
+           } %>
