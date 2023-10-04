@@ -26,6 +26,9 @@
           <%= link_to 'Posts', posts_path, class: "nav-link #{'active' if controller_name == 'posts' && action_name == 'index' }", 'aria-current': 'page' %>
         </li>
         <li class="nav-item">
+          <%= link_to 'Categories', categories_path, class: "nav-link #{'active' if action_name == 'about' }", 'aria-current': 'page' %>
+        </li>
+        <li class="nav-item">
           <%= link_to 'About', about_path, class: "nav-link #{'active' if action_name == 'about' }", 'aria-current': 'page' %>
         </li>
       </ul>
