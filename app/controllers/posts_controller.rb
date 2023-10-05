@@ -9,6 +9,8 @@ class PostsController < ApplicationController
       @posts = @posts.where(created_at: params[:start_date]..params[:end_date])
     end
     @posts = @posts.order(created_at: :desc)
+                   .page(params[:page])
+                   .per(5)
   end
 
   def new
