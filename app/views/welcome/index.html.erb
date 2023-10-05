@@ -1,2 +1,2 @@
-<h1>Hello World!</h1>
+<h1>Hello <%= current_user.email if user_signed_in? %></h1>
 <p>Welcome to my page!</p>
