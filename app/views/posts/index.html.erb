@@ -45,8 +45,8 @@
           <%= link_to 'New Comment', new_post_comment_path(post), class: 'btn btn-sm btn-success' %>
           <%= link_to 'Comments', post_comments_path(post), class: 'btn btn-sm btn-dark' %>
           <%= link_to 'Show', post_path(post), class: 'btn btn-sm btn-primary' %>
-          <%= link_to 'Edit', edit_post_path(post), class: 'btn btn-sm btn-warning' %>
-          <%= button_to 'Delete', post_path(post), method: :delete, class: 'btn btn-sm btn-danger' %>
+          <%= link_to 'Edit', edit_post_path(post), class: 'btn btn-sm btn-warning' if user_signed_in? %>
+          <%= button_to 'Delete', post_path(post), method: :delete, class: 'btn btn-sm btn-danger' if user_signed_in? %>
         </td>
       </tr>
     <% end %>
