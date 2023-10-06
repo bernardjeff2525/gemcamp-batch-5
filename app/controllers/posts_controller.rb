@@ -2,9 +2,10 @@ class PostsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   # before_action :set_post, except: [:index, :new, :create]
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :validate_post_owner, only: [:edit, :update, :destroy]
 
   def index
-    @posts = Post.includes(:categories).all
+    @posts = Post.includes(:categories, :user).all
     @posts = @posts.where('title LIKE ?', "%#{params[:title]}%")
     if params[:start_date].present? && params[:end_date].present?
       @posts = @posts.where(created_at: params[:start_date]..params[:end_date])
@@ -58,5 +59,12 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:title, :content, category_ids: [])
+  end
+
+  def validate_post_owner
+    return if @post.user == current_user
+
+    flash[:notice] = 'This post does not belongs to you'
+    redirect_to posts_path
   end
 end
