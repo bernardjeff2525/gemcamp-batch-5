@@ -26,6 +26,7 @@
     <thead>
     <tr>
       <td>AUTHOR</td>
+      <td>COMMENTS COUNT</td>
       <td>TITLE</td>
       <td>CONTENT</td>
       <td>CATEGORIES</td>
@@ -36,6 +37,7 @@
     <% @posts.each do |post| %>
       <tr>
         <td><%= post.user&.email %></td>
+        <td><%= post.comments_count %></td>
         <td><%= post.title %></td>
         <td><%= post.content %></td>
         <td><%= post.categories.pluck(:name).join(', ') %></td>

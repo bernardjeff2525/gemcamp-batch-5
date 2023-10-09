@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   before_action :validate_post_owner, only: [:edit, :update, :destroy]
 
   def index
-    @posts = Post.includes(:categories, :user).all
+    @posts = Post.includes(:categories, :user, :comments).all
     @posts = @posts.where('title LIKE ?', "%#{params[:title]}%")
     if params[:start_date].present? && params[:end_date].present?
       @posts = @posts.where(created_at: params[:start_date]..params[:end_date])
