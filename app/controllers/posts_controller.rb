@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  require 'csv'
   before_action :authenticate_user!, except: [:index, :show]
   # before_action :set_post, except: [:index, :new, :create]
   before_action :set_post, only: [:show, :edit, :update, :destroy]
@@ -10,9 +11,25 @@ class PostsController < ApplicationController
     if params[:start_date].present? && params[:end_date].present?
       @posts = @posts.where(created_at: params[:start_date]..params[:end_date])
     end
+
     @posts = @posts.order(created_at: :desc)
                    .page(params[:page])
                    .per(5)
+
+    respond_to do |format|
+      format.html
+      format.csv do
+        csv_string = CSV.generate do |csv|
+          csv << ['email', 'comments_count', 'id', 'title', 'content', 'categories', 'created_at']
+
+          @posts.each do |post|
+            csv << [post.user&.email, post.comments_count, post.id, post.title, post.content,
+                    post.categories.pluck(:name).join(','), post.created_at]
+          end
+        end
+        render plain: csv_string
+      end
+    end
   end
 
   def new
