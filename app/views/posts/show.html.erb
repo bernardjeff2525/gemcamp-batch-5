@@ -1,5 +1,7 @@
 <div class="container">
+
   <h1><%= @post.title %></h1>
+  <%= image_tag @post.image.url if @post.image.present? %>
   <ul>
     <li>Content: <%= @post.content %></li>
     <li>Created At: <%= @post.created_at %></li>

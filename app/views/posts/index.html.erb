@@ -27,6 +27,7 @@
     <tr>
       <td>AUTHOR</td>
       <td>COMMENTS COUNT</td>
+      <td>IMAGE</td>
       <td>TITLE</td>
       <td>CONTENT</td>
       <td>CATEGORIES</td>
@@ -38,6 +39,7 @@
       <tr>
         <td><%= post.user&.email %></td>
         <td><%= post.comments_count %></td>
+        <td><%= image_tag post.image.url, style: 'width: 200px; height: 100px' if post.image.present? %></td>
         <td><%= post.title %></td>
         <td><%= post.content %></td>
         <td><%= post.categories.pluck(:name).join(', ') %></td>

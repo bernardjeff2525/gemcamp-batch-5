@@ -21,6 +21,9 @@
       <%= form.text_area :content, class: 'form-control' %>
     </div>
     <div class="mb-3">
+      <%= form.file_field :image, class: 'form-control' %>
+    </div>
+    <div class="mb-3">
       <%= form.collection_check_boxes :category_ids, Category.all, :id, :name, class: 'form-control' %>
     </div>
     <%= form.submit class: 'btn btn-primary' %>
