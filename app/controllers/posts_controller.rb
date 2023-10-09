@@ -18,6 +18,9 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       format.html
+      format.xml do
+        render xml: @posts.as_json
+      end
       format.csv do
         csv_string = CSV.generate do |csv|
           csv << ['email', 'comments_count', 'id', 'title', 'content', 'categories', 'created_at']
