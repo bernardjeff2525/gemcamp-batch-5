@@ -9,9 +9,11 @@
   <ul>
     <% @comments.each do |comment| %>
       <li>
-        <%= comment.content %>(<%= comment.created_at %>)
-        <%= link_to 'Edit Comment', edit_post_comment_path(@post, comment), class: "btn btn-sm btn-warning" %>
-        <%= button_to 'Delete', post_comment_path(@post, comment), method: :delete,class: "btn btn-sm btn-danger" %>
+        <%= comment.content %>(By: <%= "#{comment.user&.email} #{comment.created_at}" %>)
+        <% if user_signed_in? && comment.user == current_user %>
+          <%= link_to 'Edit Comment', edit_post_comment_path(@post, comment), class: "btn btn-sm btn-warning" %>
+          <%= button_to 'Delete', post_comment_path(@post, comment), method: :delete, class: "btn btn-sm btn-danger" %>
+        <% end %>
       </li>
     <% end %>
   </ul>
