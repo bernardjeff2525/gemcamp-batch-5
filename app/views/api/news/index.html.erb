@@ -1,0 +1,28 @@
+<div class="container">
+  <table class="table table-bordered ">
+    <thead>
+    <tr>
+      <td>AUTHOR</td>
+      <td>SOURCE</td>
+      <td>URL</td>
+      <td>TITLE</td>
+      <td>CONTENT</td>
+      <td>IMAGE</td>
+      <td>PUBLISHED AT</td>
+    </tr>
+    </thead>
+    <tbody>
+    <% @articles.each do |article| %>
+      <tr>
+        <td><%= article['author'] %></td>
+        <td><%= article['source']['name'] %></td>
+        <td><%= article['url'] %></td>
+        <td><%= article['title'] %></td>
+        <td><%= article['content'] %></td>
+        <td><%= image_tag article['urlToImage'] if article['urlToImage'].present? %></td>
+        <td><%= article['publishedAt'] %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

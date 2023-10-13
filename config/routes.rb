@@ -13,4 +13,8 @@ Rails.application.routes.draw do
   end
 
   resources :categories, except: :show
+
+  namespace :api do
+    resources :news, only: :index
+  end
 end
