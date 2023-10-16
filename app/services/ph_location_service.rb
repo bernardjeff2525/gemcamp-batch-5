@@ -25,4 +25,15 @@ class PhLocationService
       address_province.save
     end
   end
+
+  def fetch_districts
+    request = RestClient.get("#{url}/districts/")
+    district_data = JSON.parse(request.body)
+    district_data.each do |district|
+      address_province = Address::Province.find_or_initialize_by(code: district['code'])
+      address_province.region = Address::Region.find_by(code: district['regionCode'])
+      address_province.name = district['name']
+      address_province.save
+    end
+  end
 end
