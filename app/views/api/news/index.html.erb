@@ -1,4 +1,14 @@
 <div class="container">
+  <%= form_with url: api_news_index_path, method: :get, class: 'form' do |form| %>
+    <div class="mb-3">
+      <%= form.label :category, class: 'form-label' %>
+      <%= form.select :category, @categories, selected: params[:category], class: 'form-control' %>
+    </div>
+    <%= form.submit 'Search', class: 'btn btn-sm btn-primary' %>
+  <% end %>
+</div>
+
+<div class="container">
   <table class="table table-bordered ">
     <thead>
     <tr>
