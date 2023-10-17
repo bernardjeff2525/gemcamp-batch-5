@@ -40,7 +40,6 @@ class PhLocationService
   def fetch_cities
     request = RestClient.get("#{url}/cities-municipalities/")
     data = JSON.parse(request.body)
-    data_error = []
     data.each do |city|
       address_city = Address::City.find_or_initialize_by(code: city['code'])
       address_city.name = city['name']
@@ -49,7 +48,7 @@ class PhLocationService
                               elsif city['provinceCode']
                                 Address::Province.find_by_code(city['provinceCode'])
                               end
-      data_error << city unless address_city.save
+      address_city.save
     end
 
     city = Address::City.find_or_initialize_by(code: '129804000')
