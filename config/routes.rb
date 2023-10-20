@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   resources :categories, except: :show
 
   namespace :api do
+    resource :random_users, only: :show
     resources :news, only: :index
     namespace :v1 do
       resources :regions, only: [:index, :show] do

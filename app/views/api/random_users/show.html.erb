@@ -1,0 +1,5 @@
+<%= @random_user %>
+<hr>
+<h4>Name</h4>
+<%= label_tag :first_name %>
+<%= text_field_tag :name, @random_user['results'][0]['name']['first'] %>
