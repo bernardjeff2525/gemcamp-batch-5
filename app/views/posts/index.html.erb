@@ -37,7 +37,10 @@
     <tbody>
     <% @posts.each do |post| %>
       <tr>
-        <td><%= post.user&.email %></td>
+        <td data-controller="clipboard">
+          <span data-clipboard-target="email"><%= post.user&.email %></span>
+          <button data-clipboard-target="copyButton" data-action="click->clipboard#copy" class="notice btn btn-sm btn-dark">copy</button>
+        </td>
         <td><%= post.comments_count %></td>
         <td><%= image_tag post.image.url, style: 'width: 200px; height: 100px' if post.image.present? %></td>
         <td><%= post.title %></td>
