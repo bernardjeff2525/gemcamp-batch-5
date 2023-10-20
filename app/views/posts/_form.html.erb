@@ -11,7 +11,7 @@
 </div>
 
 <div class="container">
-  <%= form_with model: @post, url: url, method: method, data: { turbo: false } do |form| %>
+  <%= form_with model: @post, url: url, method: method, data: { turbo: false,  controller: :location } do |form| %>
     <div class="mb-3">
       <%= form.label :title, class: 'form-label' %>
       <%= form.text_field :title, class: 'form-control' %>
@@ -26,6 +26,27 @@
     <div class="mb-3">
       <%= form.collection_check_boxes :category_ids, Category.all, :id, :name, class: 'form-control' %>
     </div>
+
+    <div class="mb-3">
+      <%= form.label :address_region_id %>
+      <%= form.collection_select :address_region_id,
+                                 Address::Region.all, :id, :name,
+                                 { prompt: 'Please select region' },
+                                 class: 'form-control',
+                                 data: { location_target: 'selectedRegionId', action: 'change->location#fetchProvinces' } %>
+    </div>
+    <div class="mb-3" data-action>
+      <%= form.label :address_province_id %>
+      <%= form.collection_select :address_province_id,
+                                 Address::Province.all, :id, :name,
+                                 { prompt: 'Please select province' }, class: 'form-control',
+                                 data: { location_target: 'selectedProvinceId' } %>
+    </div>
+    <div class="mb-3">
+      <%= form.label :address %>
+      <%= form.text_field :address, class: 'form-control' %>
+    </div>
     <%= form.submit class: 'btn btn-primary' %>
   <% end %>
+
 </div>

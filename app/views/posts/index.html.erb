@@ -31,6 +31,7 @@
       <td>TITLE</td>
       <td>CONTENT</td>
       <td>CATEGORIES</td>
+      <td>ADDRESS</td>
       <td>ACTIONS</td>
     </tr>
     </thead>
@@ -46,6 +47,7 @@
         <td><%= post.title %></td>
         <td><%= post.content %></td>
         <td><%= post.categories.pluck(:name).join(', ') %></td>
+        <td><%= "#{post&.region&.name}, #{post&.province&.name} #{post.address}" %></td>
         <td>
           <%= link_to 'New Comment', new_post_comment_path(post), class: 'btn btn-sm btn-success' %>
           <%= link_to 'Comments', post_comments_path(post), class: 'btn btn-sm btn-dark' %>
