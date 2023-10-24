@@ -33,5 +33,9 @@ module App
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+    #
+    # config.hosts << "client.com"
+    # config.hosts << "admin.com"
+    config.hosts.clear
   end
 end
