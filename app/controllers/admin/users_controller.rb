@@ -1,4 +1,5 @@
 class Admin::UsersController < ApplicationController
+  before_action :authenticate_user!
   before_action :check_user_admin
 
   def index
@@ -8,9 +9,6 @@ class Admin::UsersController < ApplicationController
   private
 
   def check_user_admin
-    return if current_user.admin?
-
-    flash[:alert] = 'Unauthorized Access'
-    redirect_to root_path
+    raise ActionController::RoutingError.new('Not Found') unless current_user.admin?
   end
 end
