@@ -4,14 +4,18 @@ Rails.application.routes.draw do
 
   get :about, to: 'welcome#about'
 
-  resources :posts do
-    resources :comments, except: :show
+  constraints(ClientDomainConstraint.new) do
+    resources :posts do
+      resources :comments, except: :show
+    end
   end
 
   resources :categories, except: :show
 
-  namespace :admin do
-    resources :users, only: :index
+  constraints(AdminDomainConstraint.new) do
+    namespace :admin do
+      resources :users, only: :index
+    end
   end
 
   namespace :api do
