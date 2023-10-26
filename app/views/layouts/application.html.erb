@@ -38,6 +38,15 @@
         <% else %>
           <%= link_to 'Sign in', new_user_session_path, class: 'nav-link' %>
         <% end %>
+        <% if session[:locale] == 'zh-CN' %>
+          <li class="nav-item">
+            <%= link_to 'EN', params.permit!.merge(locale: 'en'), class: "nav-link #{'active' if action_name == 'about' }", 'aria-current': 'page' %>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to 'ZH-CN', params.permit!.merge(locale: 'zh-CN'), class: "nav-link #{'active' if action_name == 'about' }", 'aria-current': 'page' %>
+          </li>
+        <% end %>
       </ul>
     </div>
   </div>

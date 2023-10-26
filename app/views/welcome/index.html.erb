@@ -1,8 +1,9 @@
 <h1>Hello <%= current_user.email if user_signed_in? %></h1>
 <p>Welcome to my page!</p>
+<p><%= t('hello', name: current_user.email, age: 12) if current_user.present? %></p>
 
 <div data-controller="hello">
   <%#= text_field_tag :name, nil, data: {'hello-target': 'name'} %>
   <input data-hello-target="name" type="text">
-  <button data-action="click->hello#greet">Greet</button>
+  <button data-action="click->hello#greet"><%= t('greet') %></button>
 </div>

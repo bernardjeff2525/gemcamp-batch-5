@@ -30,4 +30,17 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  hello: "Hello world %{name} and %{age}"
+  greet: Greet
+  activerecord:
+    models:
+      post:
+        one: Post
+        other: Posts
+      category:
+        one: Category
+        other: Categories
+    attributes:
+      post:
+        title: Title
+        content: Content
