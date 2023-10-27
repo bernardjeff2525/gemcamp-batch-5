@@ -6,15 +6,12 @@ class PostsController < ApplicationController
   before_action :validate_post_owner, only: [:edit, :update, :destroy]
 
   def index
-    @posts = Post.includes(:categories, :user, :comments).all
-    @posts = @posts.where('title LIKE ?', "%#{params[:title]}%")
-    if params[:start_date].present? && params[:end_date].present?
-      @posts = @posts.where(created_at: params[:start_date]..params[:end_date])
-    end
+    @posts = Post.includes(:categories, :user, :comments)
+    @posts = @posts.filter_by_matching_title(params[:title]) if params[:title].present?
+    @posts = @posts.filter_by_start_date(params[:start_date]) if params[:start_date].present?
+    @posts = @posts.filter_by_end_date(params[:end_date]) if params[:end_date].present?
 
-    @posts = @posts.order(created_at: :desc)
-                   .page(params[:page])
-                   .per(5)
+    @posts = @posts.recent.page(params[:page]).per(5)
 
     respond_to do |format|
       format.html

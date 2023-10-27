@@ -10,6 +10,18 @@ class Post < ApplicationRecord
   belongs_to :province, class_name: 'Address::Province', foreign_key: 'address_province_id'
   mount_uploader :image, ImageUploader
 
+  scope :recent, -> { order(created_at: :desc) }
+  scope :today, -> { where('created_at >= ?', Time.current.beginning_of_day) }
+  scope :filter_by_start_date, ->(start_date) {
+    where('created_at >= ?', start_date)
+  }
+  scope :filter_by_end_date, ->(end_date) {
+    where('created_at <= ?', end_date)
+  }
+  scope :filter_by_matching_title, ->(title) {
+    where('title LIKE ?', "%#{title}%")
+  }
+
   def destroy
     update(deleted_at: Time.current)
   end
