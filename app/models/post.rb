@@ -10,6 +10,8 @@ class Post < ApplicationRecord
   belongs_to :province, class_name: 'Address::Province', foreign_key: 'address_province_id'
   mount_uploader :image, ImageUploader
 
+  delegate :email, to: :user, prefix: :user
+
   scope :recent, -> { order(created_at: :desc) }
   scope :today, -> { where('created_at >= ?', Time.current.beginning_of_day) }
   scope :filter_by_start_date, ->(start_date) {
