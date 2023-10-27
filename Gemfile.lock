@@ -175,6 +175,7 @@ GEM
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
     orm_adapter (0.5.0)
+    phonelib (0.8.4)
     psych (5.1.0)
       stringio
     public_suffix (5.0.3)
@@ -277,6 +278,7 @@ DEPENDENCIES
   jsbundling-rails
   kaminari
   mysql2 (~> 0.5)
+  phonelib
   puma (~> 5.0)
   rails (~> 7.0.8)
   rest-client
